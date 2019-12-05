@@ -8,8 +8,9 @@ This is just a conglomeration of my automation projects specifically for general
 
 [Daily Reddit Music Updates](https://github.com/milesstroud/python-automationhelpers/blob/master/RedditMusic(P).py)
   - Future updates to this nifty daily bite-sized music news update tool will:
-    - Incorporate more HTML email components to make it prettier :-)
     - Add crontab functionality to schedule script to run daily
+    - Incorporate more HTML email components to make it prettier by adding the banners from each subreddit before its news section :-)
+    - Add more music subreddits!
 ## Authors
 
 * **Miles Stroud** - *University of Maryland* - (https://github.com/milesstroud)
