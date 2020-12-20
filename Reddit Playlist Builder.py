@@ -50,10 +50,17 @@ def PsychRock():
     for post in psychposts:
         master_dict['url'].append(post.url)
 
+def PCmusic():
+    pcmusic = reddit.subreddit('pcmusic')
+    pcposts = pcmusic.top(limit=10, time_filter = 'day')
+    for post in pcposts:
+        master_dict['url'].append(post.url)
+
 #Calling each function to perform their duties before creating the email
 Pop()
 HipHop()
 PsychRock()
+PCmusic()
 
 
 #Looping through either a playlist, track, or album
