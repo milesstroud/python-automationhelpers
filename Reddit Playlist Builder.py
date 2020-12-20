@@ -86,5 +86,3 @@ else:
 for track in tracks:
     sp.playlist_add_items('{your_playlist_id}', track)
 
-
-# print(master_dict)
