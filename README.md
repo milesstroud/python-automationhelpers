@@ -13,6 +13,9 @@ This is just a conglomeration of my automation projects specifically for general
     - Incorporate more HTML email components to make it prettier by adding the banners from each subreddit before its news section :-)
     - Add more music subreddits!
     - Retrieve the embedded links from posts that only have a title and embedded link 
+    
+[Reddit Playlist Builder](https://github.com/milesstroud/python-automationhelpers/blob/master/RedditMusic(P).py) 
+  - Expanding on the project above, I decided to cut the middleman and take posts that contain a Spotify link and grabs the content of that link (playlist, album, or track), picks 50 random songs, and uploads those to a [playlist](https://open.spotify.com/playlist/2X7dRDEE3rFzSS7Opipohb?si=7Gqsl8NyRlufqYfkGKs9Wg). Music discovery with ease.
 ## Authors
 
 * **Miles Stroud** - *University of Maryland* - (https://github.com/milesstroud)
