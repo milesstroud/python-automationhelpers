@@ -8,10 +8,10 @@ import spotipy.util as util
 from spotipy.oauth2 import SpotifyOAuth
 import random
 
-SPOTIPY_CLIENT_ID = '2cfb716804634481b678117914a9d6cd'
-secret = 'ecb207bc67d14a71a2841fbdef1bff6c'
+SPOTIPY_CLIENT_ID = ''
+secret = ''
 redirect_uri = 'http://localhost'
-username = '1211908926'
+username = ''
 
 scope = 'playlist-modify-public'
 token = SpotifyOAuth(scope=scope,username=username, client_id=SPOTIPY_CLIENT_ID,client_secret=secret, redirect_uri=redirect_uri)
