@@ -13,10 +13,10 @@ import re
 
 SPOTIPY_CLIENT_ID = ''
 secret = ''
-redirect_uri = 'http://localhost'
+redirect_uri = ''
 username = ''
 
-API_KEY = ''
+API_KEY = '-g'
 
 
 scope = 'playlist-modify-public'
@@ -111,8 +111,11 @@ for url in master_dict['url']:
     elif url.startswith('https://open.spotify.com/album/'):
         album_id = url[31:]
         print(album_id)
-        for item in sp.album(album_id)['tracks']['items']:
-            tracks.append(item['id'])
+        try:
+            for item in sp.album(album_id)['tracks']['items']:
+                tracks.append(item['id'])
+        except:
+            pass
     elif url.startswith('https://www.youtube.com/watch?v='):
         video_id = url[32:43]
         response = requests.get('https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=' + video_id + '&key=' + API_KEY)
@@ -122,12 +125,15 @@ for url in master_dict['url']:
         video_id = url[17:28]
         response = requests.get('https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=' + video_id + '&key=' + API_KEY)
         response = json.loads(response.content)
-        song_titles.append(response['items'][0]['snippet']['title'])
+        try:
+            song_titles.append(response['items'][0]['snippet']['title'])
+        except:
+            pass
 
 #Need first 23 characters (the length of a track id) to control for a quirk with playlist tracks
 # tracks = [[track[0:22]] for track in tracks]
 tracks = [track[0:22] for track in tracks]
-
+alltracks = tracks
 
 
 #50 Random Spotify songs to not have long albums take up space (can't add more than 50 at once)
@@ -137,9 +143,22 @@ else:
     tracks = tracks
 
 tracks = convert(tracks)
-
+print(tracks)
 #To Replace Instead of Add New, Uncomment This:
-sp.playlist_replace_items('', tracks)
+sp.playlist_replace_items('2X7dRDEE3rFzSS7Opipohb', tracks)
+
+#The Spotify API limits you to 50 songs at a time. The code below is to include an additional 50 songs that weren't
+#added above.
+try:
+    tracks = list(set(alltracks).difference(tracks))
+    if len(tracks) > 50:
+        tracks = random.sample(tracks, 50)
+        sp.playlist_add_items('2X7dRDEE3rFzSS7Opipohb', tracks)
+    else:
+        tracks = tracks
+    sp.playlist_add_items('2X7dRDEE3rFzSS7Opipohb', tracks)
+except Exception as e:
+    print(e)
 
 #TIME TO GRAB THE YOUTUBE SONGS ON SPOTIFY
 tracks = []
@@ -159,5 +178,5 @@ else:
 
 print(tracks)
 tracks = convert(tracks)
-sp.playlist_add_items('', tracks)
+sp.playlist_add_items('2X7dRDEE3rFzSS7Opipohb', tracks)
 
